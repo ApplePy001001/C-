@@ -1,0 +1,128 @@
+// Christian Santiago
+// Assignment #02
+// 
+// 
+#include<iostream>
+#include<iomanip>
+#include<string>
+using namespace std;
+
+// Function prototypes
+void showMenu();
+void calcWeight(double,int);
+
+int main()
+{
+    int choice;         // To hold a menu choice
+    double weight;     // To hold a number of months
+    
+    // Constants for the menu choices
+    const int Mercury_CHOICE = 1,
+              Venus_CHOICE = 2,
+              Earth_CHOICE = 3,
+              Mars_CHOICE = 4,
+              Jupiter_CHOICE = 5,
+              Saturn_CHOICE = 6,
+              Uranus_CHOICE = 7,
+              Neptune_CHOICE = 8,
+              QUIT_CHOICE = 9;
+    
+    // Constants for weight multipliers.
+    const double Mercury = .4155,
+                 Venus = .8975,
+                 Earth = 1.0,
+                 Mars = .3507,
+                 Jupiter = 2.5374,
+                 Saturn = 1.0677,
+                 Uranus = 0.8947,
+                 Neptune = 1.1794;
+    
+   
+            
+    
+   
+    do
+    {
+        // Display the menu and get the user's choice.
+        showMenu();
+        cin >> choice;
+        
+        // Validate the menu selection.
+        while (choice < Mercury_CHOICE || choice > QUIT_CHOICE)
+        {
+            cout << "You entered an invalid number; 1-8 or 9 to quit: ";
+            cin >> choice;        
+        }
+        
+        // If the user does not want to quit, proceed.
+        if (choice !=QUIT_CHOICE)
+        {
+            // Enter your weight
+            cout << "Enter your weight in pounds: ";
+            cin >> weight;
+            
+            while (weight < 0){
+                cout << "Weight must be greater than 0: ";
+                cin >> weight;
+            }
+            
+            // Display the planet choice.
+            switch (choice)
+            {
+                case Mercury_CHOICE:
+                    calcWeight(Mercury, weight);
+                    cout << "Mercury.\n";
+                    break;
+                case Venus_CHOICE:
+                    calcWeight(Venus, weight);
+                    cout << "Venus.\n";
+                    break;
+                case Earth_CHOICE:
+                    calcWeight(Earth, weight );
+                    cout << "Earth.\n";
+                    break;
+                case Mars_CHOICE:
+                    calcWeight(Mars, weight);
+                    cout << "Mars.\n";
+                    break;
+                case Jupiter_CHOICE:
+                    calcWeight(Jupiter, weight);
+                    cout << "Jupiter.\n";
+                    break;
+                case Saturn_CHOICE:
+                    calcWeight(Saturn, weight);
+                    cout << "Saturn.\n";
+                    break;
+                case Uranus_CHOICE:
+                    calcWeight(Uranus, weight);
+                    cout << "Uranus.\n";
+                    break;
+                case Neptune_CHOICE:
+                    calcWeight(Neptune, weight);
+                    cout << "Neptune.\n";
+            }
+        }
+    } while (choice != QUIT_CHOICE);
+    return 0;    
+}
+
+void showMenu()
+{
+    cout << "1. Mercury\n"
+         << "2. Venus\n"
+         << "3. Earth\n"
+         << "4. Mars\n"
+         << "5. Jupiter\n"
+         << "6. Saturn\n"
+         << "7. Uranus\n"
+         << "8. Neptune\n"
+         << "9. Quit the Program\n\n"
+         << "Enter # for planet: ";   
+}
+
+void calcWeight(double Multiplier, int weight)
+{
+    cout << "You will weigh "
+         << (Multiplier * weight)
+         << " on planet ";
+}
