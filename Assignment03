@@ -1,0 +1,77 @@
+#include<iostream>               
+#include <fstream>    
+#include <iomanip>
+using namespace std;
+
+    int trackNumber;
+    int playing;
+    int playingMin;
+    int playingSec;
+    int totalTime;
+    int runningMin;
+    int runningSec;
+    int totalMin;
+    int totalSec;
+    int remainingMin;
+    int remainingSec;
+    
+    void remainingTime();
+    void trackNumbers();
+    void header();
+   
+    
+    
+
+int main()
+{
+    header(); 
+    trackNumbers();
+    remainingTime();
+    
+    
+    return 0;
+}
+
+void header(){
+    cout << setw(20) << "Song" << setw(40) << "Song Time" << setw(40) << "Total Time" << endl;
+    cout << setw(22) << "Number" << setw(43) << "Minutes     Seconds" << setw(40) << "Minutes      Seconds" << endl;
+    cout << setw(20) << "------------";
+    cout << "-------------------------";
+    cout << "-------------------------";
+    cout << "-------------------------"; 
+    cout << "-----------------" << endl << endl;
+    
+}
+
+void trackNumbers(){
+    trackNumber = 1;
+    ifstream inData;
+    inData.open("songs.txt");
+    while(inData >> playing){
+        
+        playingMin= (playing /60);
+        playingSec= (playing % 60);
+        
+        runningMin = playingMin + runningMin;
+        runningSec = playingSec + runningSec;
+        
+        cout << setw(20) << trackNumber; 
+        cout << setw(30) << playingMin << setw(12) << playingSec; 
+        cout << setw(30) << runningMin << setw(12) << runningSec << endl;
+        trackNumber++;
+    }
+}
+void remainingTime(){
+    
+   totalMin = runningMin;
+   totalSec = runningSec;    
+       
+   totalTime = 4800 - ((totalMin * 60) + totalSec);
+   remainingMin = totalTime / 60;
+   remainingSec = totalTime % 60;
+   
+   cout <<endl << setw(16) << "You have " << remainingMin << " minutes and " << remainingSec << " seconds remaining." << endl << endl;
+}
+
+   
+
